@@ -1,0 +1,95 @@
+use ecommerce;
+select * from hr;
+describe hr;
+
+# total emp hired in the specific state and total cost it took to train.
+select count(FirstName) as total_hired,
+		round(sum(`training cost`),3) as Training_Cost,
+        state as State
+from hr
+group by state 
+order by total_hired desc;
+
+# Department where Most Emp where Hired.
+
+select count(FirstName) as Total_Emp,
+		DepartmentType
+from hr 
+group by DepartmentType
+order by Total_Emp desc;
+
+# Hire emp number as per year 
+
+select  year(str_to_date(StartDate,'%d-%b-%Y'))as Hire_date,
+		count(*) as Emp_hired
+from hr
+group by Hire_date
+order by Emp_Hired desc;
+
+# exit emp count and amount spend on them based on year.
+select  year(str_to_date(ExitDate,'%d-%b-%Y'))as Exit_date,
+		round(sum(`training cost`),3) as training_cost,
+		count(*) as Emp_Exited
+from hr
+group by Exit_date
+order by Emp_Exited desc;
+
+# Number of Emp which failed the training aggrigated based on Gender and year also shows the cost it took to train them.
+
+select round(sum(`Training Cost`),2) as Training_cost,
+		year(str_to_date(`Training Date`,'%d-%b-%y')) as Training_date,
+        count(FirstName) as Total_Emp,
+        GenderCode as Gender
+from hr
+	where `Training Outcome`='Failed'
+    group by Training_date,Gender;
+
+# Count of emp resigned based on their Emp Type also has total emp in that Emp type.
+
+SELECT  EmployeeType AS Emp_Type,
+    COUNT(*) AS Total_Employees,
+    SUM(CASE
+            WHEN TerminationType = 'Resignation' THEN 1
+            ELSE 0
+        END) AS Resigned_Employees
+FROM hr
+GROUP BY EmployeeType;
+
+# Department that has highest rate of attrition
+
+select  DepartmentType,
+    COUNT(*) AS Total_Employees,
+    SUM(CASE
+            WHEN TerminationType = 'Resignation' THEN 1
+            ELSE 0
+        END) AS Resigned,
+    ROUND(
+        SUM(CASE
+                WHEN TerminationType='Resignation' THEN 1
+                ELSE 0
+            END) *100/COUNT(*),
+        2
+    ) AS Attrition_Rate
+FROM hr
+GROUP BY DepartmentType
+ORDER BY Attrition_Rate DESC;
+
+# Shows which department has Highest rate of passing 
+SELECT
+    DepartmentType,
+    COUNT(*) AS Total_Trained,
+    SUM(CASE
+            WHEN `Training Outcome`='Passed' THEN 1
+            ELSE 0
+        END) AS Passed,
+    ROUND(
+        SUM(CASE
+                WHEN `Training Outcome`='Passed' THEN 1
+                ELSE 0
+            END)*100/COUNT(*),
+        2
+    ) AS Success_Rate
+FROM hr
+GROUP BY DepartmentType
+ORDER BY Success_Rate DESC;
+
