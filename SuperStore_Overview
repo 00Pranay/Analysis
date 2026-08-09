@@ -1,0 +1,79 @@
+# Superstore Sales & Profit Analysis
+
+## Project Overview
+
+An end-to-end retail analytics project using **MySQL and Power BI** to analyze sales, profitability, customers, products, regions, categories, discounts, and shipping performance.
+
+The objective was to identify major revenue and profitability drivers, detect underperforming areas, and generate actionable business recommendations.
+
+## Tools Used
+
+* **MySQL** – Data cleaning, aggregation and exploratory analysis
+* **Power BI** – Interactive dashboard, KPIs, YoY analysis and drill-downs
+* **Excel/CSV** – Source dataset
+
+## Key Business Insights
+
+### 1. Sales grew strongly over the analysis period
+
+Sales increased from approximately **$0.48M in 2014 to $0.73M in 2017**, indicating strong overall revenue growth.
+
+### 2. Profitability improved significantly
+
+Profit increased from approximately **$48K in 2014 to $94K in 2017**. The increase in profit was stronger than the increase in sales, suggesting an improvement in overall profitability.
+
+### 3. Technology was the strongest sales category
+
+**Technology generated the highest sales**, followed by Furniture and Office Supplies.
+
+This indicates that Technology was a major revenue driver and could be prioritized for inventory and promotional planning.
+
+### 4. The West region was the strongest profit contributor
+
+The **West region generated the highest profit**, followed by East, South and Central.
+
+This suggests that regional strategies could be tailored according to profitability rather than applying the same strategy across all regions.
+
+### 5. Some products generated substantially higher profit than others
+
+The product-level analysis showed a small number of products contributing significantly more profit than other products.
+
+These high-performing products could be prioritized for inventory availability and targeted promotions.
+
+### 6. High revenue does not always mean high profitability
+
+Customer-level analysis identified cases where high-revenue customers generated negative profit.
+
+For example, **Sean Miller generated approximately $25K in sales but approximately -$1.98K in profit**.
+
+This highlights the importance of evaluating customers using both **revenue and profitability**, rather than revenue alone.
+
+### 7. Loss-making sales require further investigation
+
+The analysis identified an overall loss amount of approximately **$156K**, representing around **6.8%** based on the dashboard calculation.
+
+Discounts, product-level profitability and customer-level performance should therefore be reviewed to identify the main sources of losses.
+
+## Business Recommendations
+
+* Prioritize high-profit products while maintaining sufficient inventory.
+* Investigate products and customers generating high sales but negative profit.
+* Review discount strategies, particularly where discounts may be reducing margins.
+* Study the West region's successful sales strategy and evaluate whether similar approaches can work in weaker regions.
+* Use profitability, rather than revenue alone, when evaluating customer performance.
+* Investigate loss-making products before increasing promotional spending.
+* Monitor monthly and yearly sales/profit trends to identify periods of declining performance.
+
+## Dashboard Features
+
+* KPI cards for sales/profit performance
+* YoY Sales Growth
+* YoY Profit Growth
+* Loss percentage and loss amount
+* Sales by category
+* Profit by region
+* Profit by product
+* Year and month filters
+* Drill-down analysis
+* Interactive Power BI filtering
+
