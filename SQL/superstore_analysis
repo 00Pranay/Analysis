@@ -1,0 +1,144 @@
+create database ecommerce;
+use  ecommerce;
+
+# used the import wizard t create a table from demo csv file got from kaggel
+
+show tables;
+describe superstore;
+show create table superstore ;
+select * from superstore;
+SELECT COUNT(*) FROM superstore;
+
+# Finds the hero product of the supermarket 
+select  `Product Name`
+	, Round (sum(`sales`),3) as total_sales,
+    Round (sum(`Quantity`), 3) as total_Qua,
+    Round (AVG(`Discount`),3) as total_Dis,
+    Round (sum(`Profit`),3) as Total_profit
+from superstore
+group by `product Name`
+order by Total_profit Desc ,
+total_Qua desc ,total_sales desc ,total_Dis asc
+limit 1;
+
+#Used SQL Window Functions for product ranking.
+SELECT
+    `Product Name`,
+    SUM(Profit) AS total_profit,
+    RANK() OVER (ORDER BY SUM(Profit) DESC) AS profit_rank
+FROM superstore
+GROUP BY `Product Name`;
+
+# Top 5 product that genrated least reveanu.
+select  `Product Name`
+	, Round (sum(`sales`),3) as total_sales,
+    Round (sum(`Quantity`), 3) as total_Qua,
+    Round (AVG(`Discount`),3) as total_Dis,
+    Round (sum(`Profit`),3) as Total_profit
+from superstore
+group by `product Name`
+order by Total_profit Asc ,
+total_Qua asc ,total_sales asc ,total_Dis desc
+limit 5;
+
+# Top 5  Most profiting cities of superstore
+select `city` ,
+	round (sum(`Profit`),3) as Most_profit
+from superstore
+group by `city`
+order by Most_profit desc
+limit 5;
+
+# top 5 least profiting cities of superstore 
+select `city` ,
+	round (sum(`Profit`),3) as Most_profit
+from superstore
+group by `city`
+order by Most_profit asc
+limit 5;
+
+# best selling category 
+select  `Category`
+	, Round (sum(`sales`),3) as total_sales,
+    Round (sum(`Quantity`), 3) as total_Qua,
+    Round (AVG(`Discount`),3) as total_Dis,
+    Round (sum(`Profit`),3) as Total_profit
+from superstore
+group by `Category`
+order by Total_profit DESC ,
+total_Qua desc ,total_sales desc ,total_Dis asc;
+
+# These are the cities with least days took to ship order
+
+select `city`
+	, round (avg(DATEDIFF(STR_TO_DATE(`order date`, '%m/%d/%Y'),STR_TO_DATE (`ship date` ,'%m/%d/%Y'))),2) as avg_days_took
+from superstore 
+group by `city`
+HAVING COUNT(*) >= 10
+order by avg_days_took desc
+limit 10;
+
+# These are the cities with Most days took to ship order
+
+select `city`
+	, round (avg(DATEDIFF(STR_TO_DATE(`ship date` ,'%m/%d/%Y'),STR_TO_DATE (`order date`, '%m/%d/%Y'))),2) as avg_days_took
+from superstore 
+group by `city`
+HAVING COUNT(*) >= 10
+order by avg_days_took asc
+limit 10;
+
+# Most profit made as per segment
+select `Segment`
+	, ROUND ( SUM(`Profit`),3) as Most_profit
+from superstore
+group by  `segment`
+order by Most_profit desc
+limit 5; 
+
+# total sales made in every month of all year ;
+
+SELECT
+    YEAR(STR_TO_DATE(`Order Date`, '%m/%d/%Y')) AS yr,
+    MONTH(STR_TO_DATE(`Order Date`, '%m/%d/%Y')) AS mn,
+    ROUND(SUM(Sales),2) AS total_sales
+FROM superstore
+GROUP BY yr,mn
+ORDER BY yr,mn;
+
+# Top 10 customer by revenue.
+
+SELECT
+    `Customer Name`,
+    ROUND(SUM(Sales),2) AS total_sales,
+    ROUND(SUM(Profit),2) AS total_profit
+FROM superstore
+GROUP BY `Customer Name`
+ORDER BY total_sales DESC
+LIMIT 10;
+
+# this shows y we lost money on our top customer.
+SELECT
+    `Product Name`,
+    SUM(Sales) AS sales,
+    SUM(Profit) AS profit,
+    AVG(Discount) AS avg_discount
+FROM superstore
+WHERE `Customer Name` = 'Sean Miller'
+GROUP BY `Product Name`
+ORDER BY profit ASC;
+
+# shipping mode that took most days and total profit made
+
+SELECT
+    `Ship Mode`,
+    ROUND(AVG(
+        DATEDIFF(
+            STR_TO_DATE(`Ship Date`, '%m/%d/%Y'),
+            STR_TO_DATE(`Order Date`, '%m/%d/%Y')
+        )
+    ),2) AS avg_days,
+    ROUND(SUM(Profit),2) AS total_profit
+FROM superstore
+GROUP BY `Ship Mode`
+ORDER BY avg_days desc;
