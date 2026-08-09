@@ -1,0 +1,103 @@
+# HR Analytics Dashboard
+
+## Project Overview
+
+An HR analytics project using **MySQL and Power BI** to analyze workforce composition, hiring, employee resignations, attrition, training expenditure, training outcomes, employee status and employee survey scores.
+
+The objective was to identify workforce trends and provide data-driven recommendations for employee retention and training decisions.
+
+## Tools Used
+
+* **MySQL** – Data exploration, aggregation and HR metrics
+* **Power BI** – Interactive dashboard, KPIs, trends and filtering
+* **Excel/CSV** – Source dataset
+
+## Key Business Insights
+
+### 1. The organization has approximately 3K employees
+
+The dataset contains approximately **3,000 employees**, providing a broad view of workforce composition.
+
+### 2. 397 employees resigned
+
+The analysis identified **397 resignations** in the dataset.
+
+The dashboard calculates an overall attrition rate of approximately **7.93%**.
+
+### 3. Hiring and resignation patterns vary across years
+
+The hiring-versus-resignation trend shows substantial changes in workforce movement across different years.
+
+Monitoring both metrics together provides a clearer picture of workforce expansion and employee turnover than analyzing either metric independently.
+
+### 4. Pay zones have different workforce compositions
+
+Employee status varies across Pay Zones, with **Active employees representing the majority** of the workforce in each zone.
+
+Other statuses include Future Start, Leave of Absence and terminated employees.
+
+This can help HR identify zones requiring closer workforce planning.
+
+### 5. Training expenditure is significant
+
+Total training expenditure in the dataset is approximately **1.77M**.
+
+Production represents the largest training-cost contributor among the departments shown in the dashboard.
+
+### 6. Training outcomes show a mixed distribution
+
+Training expenditure is distributed across Completed, Failed, Incomplete and Passed outcomes.
+
+The relatively similar training-cost contribution across outcomes suggests that training expenditure should be evaluated alongside **training effectiveness**, rather than cost alone.
+
+### 7. Employee experience can be monitored through survey metrics
+
+The dataset contains:
+
+* Work-Life Balance Score
+* Engagement Score
+* Satisfaction Score
+
+These metrics provide an opportunity to monitor employee experience over time and compare employee sentiment across departments.
+
+## Business Recommendations
+
+### Employee Retention
+
+* Investigate departments with higher resignation/attrition rates.
+* Compare attrition with employee satisfaction and engagement scores.
+* Identify departments where low employee satisfaction and high turnover occur together.
+* Conduct deeper analysis of resignation patterns by employee type and department.
+
+### Training Optimization
+
+* Compare training duration with training success rate.
+* Identify departments with high training expenditure but relatively poor outcomes.
+* Evaluate failed and incomplete training programs to identify opportunities for improvement.
+* Monitor training cost per employee and training cost per successful outcome.
+
+### Workforce Planning
+
+* Monitor hiring and resignation trends together.
+* Use Pay Zone and Employee Status analysis to identify workforce shortages or concentrations.
+* Analyze future-start employees separately from active employees when planning workforce capacity.
+
+### Employee Experience
+
+* Track engagement, satisfaction and work-life balance over time.
+* Compare employee experience metrics across departments.
+* Investigate whether departments with lower employee satisfaction also experience higher attrition.
+
+## Dashboard Features
+
+* Total Employee KPI
+* Resignation KPI
+* Attrition Rate
+* Total Training Cost
+* Hiring vs Resignation Trend
+* Employee Status by Pay Zone
+* Training Cost by Department
+* Training Cost by Training Outcome
+* Employee Engagement, Satisfaction and Work-Life Balance
+* Department and employee-type filters
+* Interactive Power BI dashboard
